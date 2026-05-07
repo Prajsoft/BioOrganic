@@ -1,0 +1,111 @@
+'use client'
+
+import Image from 'next/image'
+import { MessageCircle, Phone } from 'lucide-react'
+import { siteConfig } from '@/data/siteConfig'
+import { TrackedCallLink, TrackedWhatsAppLink } from '@/components/analytics/TrackedLinks'
+
+const trustBadges = [
+  '✓ Govt. Licensed',
+  '✓ Non-Toxic Treatment',
+  '✓ BIS Approved Products',
+]
+
+const stats = [
+  { value: '5,000+', label: 'Clients' },
+  { value: '8+', label: 'Years' },
+  { value: '4.7★', label: 'Google' },
+  { value: '9am–7pm', label: 'All Days' },
+]
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-[70vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden">
+      {/* Background gradient — always visible */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-primary-dark" />
+
+      {/* Hero image */}
+      <Image
+        src="/images/hero/hero.svg"
+        alt="Pest control technician treating a home in Delhi NCR"
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="object-cover object-center opacity-30"
+      />
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/65" />
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 py-16 text-center">
+
+        {/* Trust badges row */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+          {trustBadges.map((b) => (
+            <span
+              key={b}
+              className="inline-block bg-white/10 text-white text-xs font-medium px-3 py-1 rounded-full border border-white/20"
+            >
+              {b}
+            </span>
+          ))}
+        </div>
+
+        {/* H1 — text-3xl max on mobile */}
+        <h1 className="text-3xl md:text-5xl font-semibold text-white leading-tight mb-5">
+          Professional Pest Control Services in Delhi NCR
+        </h1>
+
+        {/* Subtext */}
+        <p className="text-white/80 text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
+          Serving Ghaziabad, Noida, Greater Noida, Indirapuram &amp; East Delhi with
+          safe, organic, government-approved pest control. Est.&nbsp;{siteConfig.established}.
+        </p>
+
+        {/* Warranty highlight */}
+        <p className="text-accent font-medium text-sm mb-8">
+          ★ Termite: 3 Year Warranty &nbsp;·&nbsp; All Other Services: 1 Year Warranty
+        </p>
+
+        {/* CTA buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+          <TrackedWhatsAppLink
+            href={siteConfig.whatsappHref}
+            source="hero"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat with us on WhatsApp"
+            className="inline-flex items-center gap-2.5 bg-green-600 hover:bg-green-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors shadow-lg min-h-[44px]"
+          >
+            <MessageCircle size={20} aria-hidden="true" />
+            Chat on WhatsApp
+          </TrackedWhatsAppLink>
+          <TrackedCallLink
+            href={siteConfig.phoneHref}
+            source="hero"
+            aria-label="Call Bio Organic Pest Control"
+            className="inline-flex items-center gap-2.5 border-2 border-white text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/10 transition-colors min-h-[44px]"
+          >
+            <Phone size={20} aria-hidden="true" />
+            Call Now
+          </TrackedCallLink>
+        </div>
+
+        {/* Bottom stats row */}
+        <div className="border-t border-white/10 mt-8 pt-6 flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          {stats.map((s, i) => (
+            <div key={s.label} className="flex items-center gap-2 text-white">
+              {i > 0 && (
+                <span className="hidden md:block text-white/20 select-none" aria-hidden="true">|</span>
+              )}
+              <span className="font-bold">{s.value}</span>
+              <span className="text-white/60 text-sm">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

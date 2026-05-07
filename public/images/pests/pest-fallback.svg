@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title">
+  <title id="title">Pest warning</title>
+  <rect width="800" height="500" fill="#fef2f2"/>
+  <path d="M400 86 684 414H116L400 86Z" fill="#dc2626"/>
+  <rect x="380" y="206" width="40" height="120" rx="20" fill="#ffffff"/>
+  <circle cx="400" cy="368" r="22" fill="#ffffff"/>
+</svg>

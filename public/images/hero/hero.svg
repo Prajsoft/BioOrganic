@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Pest control technician treating a home</title>
+  <desc id="desc">Illustrated pest control technician applying safe treatment near a modern home.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9f2e4"/>
+      <stop offset="1" stop-color="#f7f7f5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect x="110" y="500" width="1380" height="260" rx="40" fill="#e8f5ee"/>
+  <path d="M220 498 580 250l360 248H220Z" fill="#134429"/>
+  <rect x="288" y="498" width="585" height="280" rx="22" fill="#ffffff"/>
+  <rect x="360" y="560" width="150" height="120" rx="12" fill="#dbeafe"/>
+  <rect x="570" y="560" width="150" height="120" rx="12" fill="#dbeafe"/>
+  <rect x="750" y="604" width="74" height="174" rx="10" fill="#1a5c38"/>
+  <path d="M1018 368c80 6 142 73 142 154v174H876V522c0-81 62-148 142-154Z" fill="#ffffff"/>
+  <path d="M1018 412c54 5 96 52 96 110v130H922V522c0-58 42-105 96-110Z" fill="#e8f5ee"/>
+  <circle cx="1032" cy="310" r="55" fill="#f2c9a0"/>
+  <path d="M970 298c18-56 107-70 140-17-15 7-47 9-81 1-19-4-39 2-59 16Z" fill="#263238"/>
+  <path d="M954 384h156c42 0 76 34 76 76v152H878V460c0-42 34-76 76-76Z" fill="#1a5c38"/>
+  <path d="M900 486h-92c-40 0-70 28-77 66" fill="none" stroke="#f2c9a0" stroke-width="30" stroke-linecap="round"/>
+  <path d="M742 552c-88 10-166 38-236 82" fill="none" stroke="#e8f5ee" stroke-width="14" stroke-linecap="round"/>
+  <path d="M1186 512h130c34 0 62 28 62 62v120h-192V512Z" fill="#dc2626"/>
+  <path d="M1238 694v84M1328 694v84" stroke="#263238" stroke-width="22" stroke-linecap="round"/>
+  <path d="M954 612v166M1110 612v166" stroke="#263238" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="492" cy="700" r="18" fill="#dc2626"/>
+  <circle cx="560" cy="668" r="12" fill="#dc2626"/>
+  <circle cx="626" cy="708" r="14" fill="#dc2626"/>
+</svg>

@@ -1,7 +1,29 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'bioorganicpestcontrol.in',
+        pathname: '/wp-content/**',
+      },
+    ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/services/crawling-insects-control',
+        destination: '/services/cockroach-control',
+        permanent: true,
+      },
+      {
+        source: '/crawling-insects-control',
+        destination: '/services/cockroach-control',
+        permanent: true,
+      },
+    ]
+  },
+}
 
 export default nextConfig;
