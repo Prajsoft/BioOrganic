@@ -43,15 +43,32 @@ export default function Footer() {
             Trusted By
           </p>
           <div className="flex flex-wrap justify-center gap-2">
-            {clients.map((c) => (
-              <span
-                key={c.name}
-                className="inline-flex items-center gap-1.5 bg-gray-700 text-gray-300 text-xs px-3 py-1.5 rounded-full"
-              >
-                <span className="font-medium text-white">{c.name}</span>
-                <span className="text-gray-500">{c.type}</span>
-              </span>
-            ))}
+            {clients.map((c) => {
+              const inner = (
+                <>
+                  <span className="font-medium text-white">{c.name}</span>
+                  <span className="text-gray-500">{c.type}</span>
+                </>
+              )
+              return c.href ? (
+                <a
+                  key={c.name}
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-gray-700 hover:bg-gray-600 text-gray-300 text-xs px-3 py-1.5 rounded-full transition-colors"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <span
+                  key={c.name}
+                  className="inline-flex items-center gap-1.5 bg-gray-700 text-gray-300 text-xs px-3 py-1.5 rounded-full"
+                >
+                  {inner}
+                </span>
+              )
+            })}
           </div>
         </div>
       </div>
