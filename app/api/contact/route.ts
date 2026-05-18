@@ -1,4 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
+import { Resend } from 'resend'
 import { sendCapiEvent, extractUserData, generateEventId } from '@/lib/metaCapi'
 import { locations } from '@/data/locations'
 import { services } from '@/data/services'
@@ -16,14 +17,10 @@ type ContactBody = {
   _fbc?: unknown
 }
 
-const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
-
-// Web3Forms keys are UUIDs: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-const WEB3FORMS_KEY_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+const RECIPIENT_EMAIL = 'sachindra.vashistha@gmail.com'
 
 function isConfigured() {
-  const key = process.env.WEB3FORMS_ACCESS_KEY
-  return typeof key === 'string' && WEB3FORMS_KEY_RE.test(key)
+  return typeof process.env.RESEND_API_KEY === 'string' && process.env.RESEND_API_KEY.startsWith('re_')
 }
 
 const allowedCities = new Set(locations.map((location) => location.city))
@@ -101,20 +98,22 @@ export async function POST(request: NextRequest) {
   const fbc     = str(body._fbc)
 
   try {
-    const response = await fetch(WEB3FORMS_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        access_key: process.env.WEB3FORMS_ACCESS_KEY,
-        subject: `Pest control enquiry from ${name}`,
-        from_name: 'Bio Organic Pest Control Website',
-        name, phone, city, service, message,
-      }),
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    const { error } = await resend.emails.send({
+      from: 'BioOrganic Website <onboarding@resend.dev>',
+      to: RECIPIENT_EMAIL,
+      subject: `Pest control enquiry from ${name}`,
+      text: [
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `City: ${city}`,
+        `Service: ${service}`,
+        `Message: ${message || '(none)'}`,
+      ].join('\n'),
     })
 
-    if (!response.ok) {
-      const errorBody = await response.text().catch(() => '(unreadable)')
-      console.error(`[contact] Web3Forms error ${response.status}:`, errorBody)
+    if (error) {
+      console.error('[contact] Resend error:', error)
       return NextResponse.json(
         { message: 'Unable to submit right now. Please call or WhatsApp us directly.' },
         { status: 502 },
