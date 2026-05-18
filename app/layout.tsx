@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/layout/WhatsAppButton'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import MetaPixel from '@/components/analytics/MetaPixel'
+import { GTMScript, GTMNoScript } from '@/components/analytics/GoogleTagManager'
 import { BRAND_NAME, SITE_URL } from '@/lib/seo'
 
 /*
@@ -61,10 +62,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white text-gray-900">
+        <GTMNoScript />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <GTMScript />
         <GoogleAnalytics />
         <MetaPixel />
       </body>
