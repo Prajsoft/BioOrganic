@@ -1,8 +1,12 @@
+const establishedYear = 2016
+const currentYear = new Date().getFullYear()
+const experienceYears = `${Math.max(currentYear - establishedYear, 1)}+`
+
 export const siteConfig = {
   name: 'Bio Organic Pest Control',
   tagline: 'Safe, Organic & Effective Pest Control in Delhi NCR',
-  established: '2016',
-  experienceYears: '8+',
+  established: String(establishedYear),
+  experienceYears,
   phone: '9999266042',
   phoneFormatted: '+91 99992 66042',
   phoneHref: 'tel:+919999266042',
@@ -29,7 +33,7 @@ export const siteConfig = {
   },
   stats: [
     { value: '5,000+', label: 'Homes & Businesses Protected' },
-    { value: '8+', label: 'Years of Experience' },
+    { value: experienceYears, label: 'Years of Experience' },
     { value: '4.7★', label: 'Google Rating' },
     { value: '9am–7pm', label: 'Available All Days' },
   ],

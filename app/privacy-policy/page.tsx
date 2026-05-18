@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-14">
       <h1 className="text-3xl font-semibold text-gray-900 mb-2">Privacy Policy</h1>
-      <p className="text-sm text-gray-400 mb-10">Last updated: January 2025</p>
+      <p className="text-sm text-gray-400 mb-10">Last updated: May 2026</p>
 
       <div className="space-y-8 text-sm text-gray-600 leading-relaxed">
 
@@ -18,8 +18,8 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-base font-semibold text-gray-900 mb-2">Information We Collect</h2>
           <p>
             When you submit a contact form on this website, we collect your name, phone number,
-            and email address. We collect only the information needed to respond to your
-            service enquiry.
+            city, selected service, and any optional message you provide. We collect only the
+            information needed to respond to your service enquiry.
           </p>
         </section>
 
@@ -55,8 +55,7 @@ export default function PrivacyPolicyPage() {
               submissions to help us reach relevant audiences.
             </p>
             <p>
-              Both tools use cookies. By using this website you consent to the use of these
-              analytics tools.
+              Both tools may use cookies and similar browser technologies when the site loads.
             </p>
             <p>
               To opt out of Google Analytics tracking, visit:{' '}

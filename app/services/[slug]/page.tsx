@@ -1,7 +1,17 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Phone, MessageCircle, CheckCircle2, ChevronRight, ChevronDown } from 'lucide-react'
+import {
+  CalendarClock,
+  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
+  ClipboardList,
+  IndianRupee,
+  MessageCircle,
+  Phone,
+  Search,
+} from 'lucide-react'
 import { services } from '@/data/services'
 import { siteConfig } from '@/data/siteConfig'
 import JsonLd from '@/components/ui/JsonLd'
@@ -36,6 +46,32 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
   if (!service) notFound()
 
   const related = services.filter((s) => s.slug !== slug).slice(0, 3)
+  const quickActions = [
+    {
+      label: 'Same-day visit',
+      text: `Hi! I need same-day ${service.shortTitle}. Please advise on availability.`,
+      icon: CalendarClock,
+      source: `service_quick_same_day_${slug}`,
+    },
+    {
+      label: 'Book inspection',
+      text: `Hi! I'd like to book a free inspection for ${service.shortTitle}. Can you schedule a visit?`,
+      icon: Search,
+      source: `service_quick_inspection_${slug}`,
+    },
+    {
+      label: 'Get a quote',
+      text: `Hi! I'd like a quote for ${service.shortTitle} at my property. Please share pricing.`,
+      icon: IndianRupee,
+      source: `service_quick_quote_${slug}`,
+    },
+    {
+      label: 'AMC enquiry',
+      text: `Hi! I'm interested in an Annual Maintenance Contract that includes ${service.shortTitle}. Please share details.`,
+      icon: ClipboardList,
+      source: `service_quick_amc_${slug}`,
+    },
+  ]
 
   const schema = [
     getServiceSchema(service),
@@ -106,21 +142,18 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
       <div className="bg-white border-b border-gray-100 py-3">
         <div className="max-w-5xl mx-auto px-4 flex flex-wrap items-center gap-2">
           <span className="text-xs text-gray-400 font-medium shrink-0 mr-1">Quick enquiry:</span>
-          {[
-            { label: '⚡ Same-day visit', text: `Hi! I need same-day ${service.shortTitle}. Please advise on availability.` },
-            { label: '🔍 Book inspection', text: `Hi! I'd like to book a free inspection for ${service.shortTitle}. Can you schedule a visit?` },
-            { label: '💬 Get a quote', text: `Hi! I'd like a quote for ${service.shortTitle} at my property. Please share pricing.` },
-            { label: '📋 AMC enquiry', text: `Hi! I'm interested in an Annual Maintenance Contract that includes ${service.shortTitle}. Please share details.` },
-          ].map(({ label, text }) => (
-            <a
+          {quickActions.map(({ label, text, icon: Icon, source }) => (
+            <TrackedWhatsAppLink
               key={label}
               href={`https://wa.me/919999266042?text=${encodeURIComponent(text)}`}
+              source={source}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-primary-light border border-primary/20 text-primary text-xs font-medium px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors"
+              className="inline-flex items-center gap-1.5 bg-primary-light border border-primary/20 text-primary text-xs font-medium px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors"
             >
+              <Icon size={13} aria-hidden="true" />
               {label}
-            </a>
+            </TrackedWhatsAppLink>
           ))}
         </div>
       </div>

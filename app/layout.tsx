@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/layout/WhatsAppButton'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import MetaPixel from '@/components/analytics/MetaPixel'
+import { BRAND_NAME, SITE_URL } from '@/lib/seo'
 
 /*
  * PRE-GO-LIVE CHECKLIST
@@ -17,33 +18,31 @@ import MetaPixel from '@/components/analytics/MetaPixel'
  * 5. Test whatsapp_click, call_click, form_submit events in GA4 Realtime → Events
  * 6. Test Lead, Contact, ViewContent events in Meta Events Manager → Test Events
  * 7. Confirm privacy-policy page accessible at /privacy-policy
- * 8. Confirm CookieBanner appears on first visit and dismisses on Accept
- * 9. Confirm localStorage key 'cookie_consent' = 'accepted' after dismissal
- * 10. Submit sitemap to Google Search Console: https://bioorganicpestcontrol.in/sitemap.xml
+ * 8. Submit sitemap to Google Search Console: https://bioorganicpestcontrol.in/sitemap.xml
  */
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bioorganicpestcontrol.in'),
-  applicationName: 'Bio Organic Pest Control',
+  metadataBase: new URL(SITE_URL),
+  applicationName: BRAND_NAME,
   title: {
-    default: 'Pest Control Services in Delhi NCR | Bio Organic Pest Control',
-    template: '%s | Bio Organic Pest Control',
+    default: `Pest Control Services in Delhi NCR | ${BRAND_NAME}`,
+    template: `%s | ${BRAND_NAME}`,
   },
   description:
     'Govt-licensed, non-toxic pest control in Delhi NCR. Serving 5,000+ homes and businesses since 2016. Call +91-9999266042.',
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://bioorganicpestcontrol.in',
-    siteName: 'Bio Organic Pest Control',
+    url: SITE_URL,
+    siteName: BRAND_NAME,
     images: [
       {
         url: '/images/Socialpest.png',
         width: 1200,
         height: 630,
-        alt: 'Bio Organic Pest Control in Delhi NCR',
+        alt: `${BRAND_NAME} in Delhi NCR`,
       },
     ],
   },

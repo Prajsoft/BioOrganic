@@ -1,32 +1,5 @@
-import Link from 'next/link'
-import {
-  Bug, BedDouble, TreePine, MousePointer2, Zap, Shield,
-  Leaf, Wind, Droplets, Building2, Warehouse, LucideProps,
-} from 'lucide-react'
 import { services } from '@/data/services'
-import WarrantyBadge from '@/components/ui/WarrantyBadge'
-
-type IconName = string
-type IconComponent = React.ComponentType<LucideProps>
-
-const iconMap: Record<IconName, IconComponent> = {
-  Bug,
-  BedDouble,
-  TreePine,
-  MousePointer2,
-  Zap,
-  Shield,
-  Leaf,
-  Wind,
-  Droplets,
-  Building2,
-  Warehouse,
-}
-
-function ServiceIcon({ name }: { name: string }) {
-  const Icon = iconMap[name] ?? Shield
-  return <Icon size={28} className="text-primary" />
-}
+import ServiceCard from '@/components/ui/ServiceCard'
 
 export default function ServicesGrid() {
   return (
@@ -45,29 +18,7 @@ export default function ServicesGrid() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
           {services.map((s) => (
-            <div
-              key={s.slug}
-              className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 p-5 flex flex-col gap-3"
-            >
-              <ServiceIcon name={s.icon} />
-
-              <div className="flex-1 space-y-1">
-                <h3 className="font-semibold text-gray-900 text-sm leading-snug">
-                  {s.shortTitle}
-                </h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{s.tagline}</p>
-              </div>
-
-              <div className="flex flex-col gap-2 pt-1">
-                <WarrantyBadge label={s.warranty} />
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="text-xs font-medium text-primary hover:underline"
-                >
-                  Learn More →
-                </Link>
-              </div>
-            </div>
+            <ServiceCard key={s.slug} service={s} />
           ))}
         </div>
       </div>

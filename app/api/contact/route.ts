@@ -1,5 +1,8 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { sendCapiEvent, extractUserData, generateEventId } from '@/lib/metaCapi'
+import { locations } from '@/data/locations'
+import { services } from '@/data/services'
+import { getRequestIp, isRateLimited } from '@/lib/rateLimit'
 
 type ContactBody = {
   name?: unknown
@@ -23,33 +26,15 @@ function isConfigured() {
   return typeof key === 'string' && WEB3FORMS_KEY_RE.test(key)
 }
 
-// ── IP rate limiting ─────────────────────────────────────────────────────────
-// In-memory; resets on cold start. Good enough to block burst spam on Vercel
-// where most requests in a short window hit the same instance.
+const allowedCities = new Set(locations.map((location) => location.city))
+const allowedServices = new Set([
+  ...services.map((service) => service.shortTitle),
+  'Annual Maintenance Contract (AMC)',
+  'Not sure / General Enquiry',
+])
+
 const RATE_WINDOW_MS = 15 * 60 * 1000   // 15 min
 const RATE_MAX = 3                        // 3 submissions per IP per window
-
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
-
-function getIp(req: NextRequest): string {
-  return (
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
-    req.headers.get('x-real-ip') ||
-    '0.0.0.0'
-  )
-}
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now()
-  const entry = rateLimitMap.get(ip)
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
-    return false
-  }
-  if (entry.count >= RATE_MAX) return true
-  entry.count++
-  return false
-}
 
 function str(v: unknown) {
   return typeof v === 'string' ? v.trim() : ''
@@ -69,8 +54,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true })
   }
 
-  const ip = getIp(request)
-  if (isRateLimited(ip)) {
+  const ip = getRequestIp(request)
+  if (isRateLimited(`contact:${ip}`, RATE_MAX, RATE_WINDOW_MS)) {
     return NextResponse.json(
       { message: 'Too many requests. Please wait a few minutes and try again.' },
       { status: 429 },
@@ -93,6 +78,13 @@ export async function POST(request: NextRequest) {
   if (!/^[+()\-.\s0-9]{8,20}$/.test(phone)) {
     return NextResponse.json(
       { message: 'Please enter a valid phone number.' },
+      { status: 400 },
+    )
+  }
+
+  if (name.length > 100 || message.length > 1500 || !allowedCities.has(city) || !allowedServices.has(service)) {
+    return NextResponse.json(
+      { message: 'Please check the form details and try again.' },
       { status: 400 },
     )
   }

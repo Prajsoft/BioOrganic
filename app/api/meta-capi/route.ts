@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendCapiEvent, extractUserData } from '@/lib/metaCapi'
+import { getRequestIp, isRateLimited } from '@/lib/rateLimit'
 
 // Only the events this site actually fires — prevents the endpoint being
 // abused to inject arbitrary event names into the Meta pixel dataset.
@@ -7,21 +8,17 @@ const ALLOWED_EVENTS = new Set([
   'ViewContent',
   'Lead',
   'Contact',
-  'InitiateCheckout',
-  'CompleteRegistration',
-  'Purchase',
-  'CustomizeProduct',
 ])
 
 const ALLOWED_ORIGIN = 'bioorganicpestcontrol.in'
 
-function isTrustedUrl(raw: unknown): boolean {
+function isTrustedUrl(raw: unknown, requestHost: string): boolean {
   if (typeof raw !== 'string') return false
   try {
-    const { hostname, protocol } = new URL(raw)
+    const { host, hostname, protocol } = new URL(raw)
     return (
       (protocol === 'https:' || protocol === 'http:') &&
-      (hostname === ALLOWED_ORIGIN || hostname.endsWith(`.${ALLOWED_ORIGIN}`))
+      (host === requestHost || hostname === ALLOWED_ORIGIN || hostname.endsWith(`.${ALLOWED_ORIGIN}`))
     )
   } catch {
     return false
@@ -29,6 +26,11 @@ function isTrustedUrl(raw: unknown): boolean {
 }
 
 export async function POST(request: NextRequest) {
+  const ip = getRequestIp(request)
+  if (isRateLimited(`capi:${ip}`, 30, 10 * 60 * 1000)) {
+    return NextResponse.json({ ok: false }, { status: 429 })
+  }
+
   let body: Record<string, unknown>
 
   try {
@@ -56,7 +58,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  if (!isTrustedUrl(event_source_url)) {
+  if (!isTrustedUrl(event_source_url, request.nextUrl.host)) {
     return NextResponse.json(
       { ok: false, error: 'Untrusted event_source_url.' },
       { status: 400 },

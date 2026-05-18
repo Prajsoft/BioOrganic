@@ -1,7 +1,6 @@
 import { siteConfig } from '@/data/siteConfig'
 import { locations } from '@/data/locations'
-
-const SITE_URL = 'https://bioorganicpestcontrol.in'
+import { SITE_URL } from '@/lib/seo'
 
 type Location = (typeof locations)[number]
 type Service = {

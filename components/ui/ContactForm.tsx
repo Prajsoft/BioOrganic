@@ -102,6 +102,7 @@ export default function ContactForm() {
               name="name"
               type="text"
               autoComplete="name"
+              maxLength={100}
               required
               placeholder="Rahul Sharma"
               className="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -118,6 +119,7 @@ export default function ContactForm() {
               autoComplete="tel"
               inputMode="tel"
               pattern="[+()\-.\s0-9]{8,20}"
+              maxLength={20}
               required
               placeholder="+91 98765 43210"
               className="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -170,6 +172,7 @@ export default function ContactForm() {
             id="message"
             name="message"
             rows={4}
+            maxLength={1500}
             placeholder="Tell us more — property type, size, any specific pest problem..."
             className="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
           />

@@ -1,3 +1,5 @@
+import { siteConfig } from '@/data/siteConfig'
+
 const points = [
   {
     title: 'We Come to You',
@@ -20,8 +22,8 @@ const points = [
     body: 'Complete peace of mind after every treatment. Free retreatment within the warranty period.',
   },
   {
-    title: 'Est. 2016 — 8+ Years Experience',
-    body: 'Over eight years serving thousands of homes and businesses across Delhi NCR.',
+    title: `Est. 2016 — ${siteConfig.experienceYears} Years Experience`,
+    body: 'Serving thousands of homes and businesses across Delhi NCR.',
   },
   {
     title: 'Free Inspection',

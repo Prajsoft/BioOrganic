@@ -1,21 +1,57 @@
 'use client'
 
 import Image from 'next/image'
-import { MessageCircle, Phone } from 'lucide-react'
+import {
+  CalendarClock,
+  ClipboardList,
+  HelpCircle,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Search,
+  ShieldCheck,
+} from 'lucide-react'
 import { siteConfig } from '@/data/siteConfig'
 import { TrackedCallLink, TrackedWhatsAppLink } from '@/components/analytics/TrackedLinks'
 
 const trustBadges = [
-  '✓ Govt. Licensed',
-  '✓ Non-Toxic Treatment',
-  '✓ BIS Approved Products',
+  'Govt. Licensed',
+  'Non-Toxic Treatment',
+  'BIS Approved Products',
 ]
 
 const stats = [
   { value: '5,000+', label: 'Clients' },
-  { value: '8+', label: 'Years' },
+  { value: siteConfig.experienceYears, label: 'Years' },
   { value: '4.7★', label: 'Google' },
   { value: '9am–7pm', label: 'All Days' },
+]
+
+const quickActions = [
+  {
+    label: 'Same-day visit',
+    text: 'Hi! I need same-day pest control. Please advise on availability.',
+    icon: CalendarClock,
+    source: 'hero_quick_same_day',
+  },
+  {
+    label: 'Free inspection',
+    text: "Hi! I'd like to book a free pest inspection. Can you schedule a visit?",
+    icon: Search,
+    source: 'hero_quick_inspection',
+  },
+  {
+    label: 'AMC plan',
+    text: "Hi! I'm interested in your Annual Maintenance Contract (AMC) plans. Please share details.",
+    icon: ClipboardList,
+    source: 'hero_quick_amc',
+  },
+  {
+    label: 'Not sure, advise me',
+    text: "Hi! I have a pest problem but I'm not sure which service I need. Can you help?",
+    icon: HelpCircle,
+    source: 'hero_quick_unsure',
+  },
 ]
 
 export default function Hero() {
@@ -45,13 +81,15 @@ export default function Hero() {
           {trustBadges.map((b) => (
             <span
               key={b}
-              className="inline-block bg-white/10 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/25 shadow-sm"
+              className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/25 shadow-sm"
             >
+              <ShieldCheck size={13} aria-hidden="true" />
               {b}
             </span>
           ))}
-          <span className="inline-block bg-primary/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-primary-light/40 shadow-sm">
-            📍 We Come to You
+          <span className="inline-flex items-center gap-1.5 bg-primary/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-primary-light/40 shadow-sm">
+            <MapPin size={13} aria-hidden="true" />
+            We Come to You
           </span>
         </div>
 
@@ -68,7 +106,7 @@ export default function Hero() {
 
         {/* Warranty highlight */}
         <p className="text-accent font-medium text-sm mb-8">
-          ★ Termite: 3 Year Warranty &nbsp;·&nbsp; All Other Services: 1 Year Warranty
+          Termite: 3 Year Warranty &nbsp;·&nbsp; All Other Services: 1 Year Warranty
         </p>
 
         {/* CTA buttons */}
@@ -99,21 +137,18 @@ export default function Hero() {
         <div className="mb-8">
           <p className="text-white/50 text-xs mb-3 uppercase tracking-widest">What do you need?</p>
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {[
-              { label: '⚡ Same-day visit', text: "Hi! I need same-day pest control. Please advise on availability." },
-              { label: '🔍 Free inspection', text: "Hi! I'd like to book a free pest inspection. Can you schedule a visit?" },
-              { label: '📋 AMC plan', text: "Hi! I'm interested in your Annual Maintenance Contract (AMC) plans. Please share details." },
-              { label: '🤔 Not sure — advise me', text: "Hi! I have a pest problem but I'm not sure which service I need. Can you help?" },
-            ].map(({ label, text }) => (
-              <a
+            {quickActions.map(({ label, text, icon: Icon, source }) => (
+              <TrackedWhatsAppLink
                 key={label}
                 href={`https://wa.me/919999266042?text=${encodeURIComponent(text)}`}
+                source={source}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs font-medium px-4 py-2 rounded-full transition-colors"
+                className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs font-medium px-4 py-2 rounded-full transition-colors"
               >
+                <Icon size={13} aria-hidden="true" />
                 {label}
-              </a>
+              </TrackedWhatsAppLink>
             ))}
           </div>
         </div>

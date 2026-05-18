@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const aboutStats = [
   { value: '5,000+', label: 'Clients Served' },
-  { value: '8+', label: 'Years in Business' },
+  { value: siteConfig.experienceYears, label: 'Years in Business' },
   { value: '13', label: 'Services Offered' },
   { value: '8', label: 'Cities Covered' },
 ]
