@@ -17,7 +17,7 @@ type ContactBody = {
   _fbc?: unknown
 }
 
-const RECIPIENT_EMAIL = 'sachindra.vashistha@gmail.com'
+const RECIPIENT_EMAIL = 'bioorganicpestcontrol@gmail.com'
 
 function isConfigured() {
   return typeof process.env.RESEND_API_KEY === 'string' && process.env.RESEND_API_KEY.startsWith('re_')
