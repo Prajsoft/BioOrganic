@@ -6,7 +6,6 @@ import { services } from '@/data/services'
 import { locations } from '@/data/locations'
 import { clients } from '@/data/clients'
 import { TrackedCallLink, TrackedWhatsAppLink } from '@/components/analytics/TrackedLinks'
-import CookiePreferencesButton from '@/components/ui/CookiePreferencesButton'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -229,7 +228,6 @@ export default function Footer() {
             <Link href="/privacy-policy" className="hover:text-gray-300 transition-colors">
               Privacy Policy
             </Link>
-            <CookiePreferencesButton />
           </div>
         </div>
       </div>

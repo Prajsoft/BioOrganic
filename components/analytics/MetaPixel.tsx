@@ -1,15 +1,12 @@
 'use client'
 
 import Script from 'next/script'
-import { useCookieConsent } from '@/lib/analyticsConsent'
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
 const isRealPixelId = !!PIXEL_ID && !PIXEL_ID.includes('X')
 
 export default function MetaPixel() {
-  const consent = useCookieConsent()
-
-  if (!isRealPixelId || consent !== 'accepted') return null
+  if (!isRealPixelId) return null
 
   return (
     <>
@@ -27,7 +24,6 @@ export default function MetaPixel() {
           fbq('track', 'PageView');
         `}
       </Script>
-      {/* Noscript fallback — loads pixel image for users with JS disabled */}
       <noscript>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

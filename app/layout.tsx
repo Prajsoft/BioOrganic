@@ -6,7 +6,6 @@ import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/layout/WhatsAppButton'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import MetaPixel from '@/components/analytics/MetaPixel'
-import CookieBanner from '@/components/ui/CookieBanner'
 
 /*
  * PRE-GO-LIVE CHECKLIST
@@ -53,7 +52,9 @@ export const metadata: Metadata = {
     images: ['/images/Socialpest.png'],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/images/BioLogo.png',
+    shortcut: '/images/BioLogo.png',
+    apple: '/images/BioLogo.png',
   },
 }
 
@@ -65,7 +66,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
-        <CookieBanner />
         <GoogleAnalytics />
         <MetaPixel />
       </body>
