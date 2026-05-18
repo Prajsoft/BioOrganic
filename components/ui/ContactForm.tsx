@@ -5,7 +5,7 @@ import { CheckCircle2, AlertCircle } from 'lucide-react'
 import { siteConfig } from '@/data/siteConfig'
 import { locations } from '@/data/locations'
 import { services } from '@/data/services'
-import { trackFormSubmit, pixelLead, pixelInitiateCheckout } from '@/components/analytics/AnalyticsEvents'
+import { trackFormSubmit, trackLeadPixel } from '@/components/analytics/AnalyticsEvents'
 import { TrackedCallLink, TrackedWhatsAppLink } from '@/components/analytics/TrackedLinks'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
@@ -24,16 +24,22 @@ export default function ContactForm() {
     const service = (data.service as string) || 'unknown'
     const city = (data.city as string) || 'unknown'
 
+    // Generate event_id here so client + server use the same one for deduplication
+    const eventId = `lead_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+    const fbp = document.cookie.split('; ').find((r) => r.startsWith('_fbp='))?.split('=')[1]
+    const fbc = document.cookie.split('; ').find((r) => r.startsWith('_fbc='))?.split('=')[1]
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, _eventId: eventId, _fbp: fbp, _fbc: fbc }),
       })
       if (res.ok) {
+        // GA4 + Google Ads conversion
         trackFormSubmit(service, city)
-        pixelLead(service, city)
-        pixelInitiateCheckout(service)
+        // Meta Pixel client-side Lead — same eventId as CAPI (server fires from /api/contact)
+        trackLeadPixel(service, city, eventId)
         setState('success')
         form.reset()
       } else {

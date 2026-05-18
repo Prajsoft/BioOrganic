@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
+import { sendCapiEvent, extractUserData, generateEventId } from '@/lib/metaCapi'
 
 type ContactRequest = {
   name?: unknown
@@ -19,8 +20,8 @@ function invalidConfig() {
   return !key || key.startsWith('REPLACE_') || key.includes('XXXXXXXX')
 }
 
-export async function POST(request: Request) {
-  let payload: ContactRequest
+export async function POST(request: NextRequest) {
+  let payload: ContactRequest & { _eventId?: string; _fbp?: string; _fbc?: string }
 
   try {
     payload = await request.json()
@@ -55,6 +56,10 @@ export async function POST(request: Request) {
     )
   }
 
+  const eventId = asTrimmedString(payload._eventId) || generateEventId('lead')
+  const fbp = asTrimmedString(payload._fbp)
+  const fbc = asTrimmedString(payload._fbc)
+
   try {
     const response = await fetch(WEB3FORMS_ENDPOINT, {
       method: 'POST',
@@ -78,7 +83,20 @@ export async function POST(request: Request) {
       )
     }
 
-    return NextResponse.json({ ok: true })
+    // Fire Meta CAPI Lead server-side — has real IP + user agent, most reliable signal
+    const userData = extractUserData(request)
+    if (fbp) userData.fbp = fbp
+    if (fbc) userData.fbc = fbc
+
+    sendCapiEvent({
+      event_name: 'Lead',
+      event_id: eventId,
+      event_source_url: request.headers.get('referer') || 'https://bioorganicpestcontrol.in/contact',
+      user_data: userData,
+      custom_data: { content_name: service, city },
+    }).catch(() => {})
+
+    return NextResponse.json({ ok: true, eventId })
   } catch {
     return NextResponse.json(
       { message: 'Unable to submit right now. Please call or WhatsApp us directly.' },

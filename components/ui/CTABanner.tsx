@@ -12,7 +12,7 @@ export default function CTABanner() {
           Ready to Get Rid of Pests?
         </h2>
         <p className="text-primary-light text-lg">
-          Free inspection. 1–3 year warranty. Serving all of Delhi NCR.
+          We come to you — free inspection, 1–3 year warranty, across Delhi NCR.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <TrackedWhatsAppLink

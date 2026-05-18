@@ -1,5 +1,9 @@
 const points = [
   {
+    title: 'We Come to You',
+    body: 'Our certified technicians travel to your home or office across Delhi NCR. No need to visit us — just book a slot.',
+  },
+  {
     title: 'Non-Toxic, BIS Approved Products',
     body: 'Safe for children, pets, and the elderly. All chemicals carry BIS certification.',
   },
@@ -43,7 +47,7 @@ export default function WhyUs() {
           {points.map((p) => (
             <div
               key={p.title}
-              className="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm"
+              className="flex items-start gap-4 bg-white/80 backdrop-blur-sm border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="mt-0.5 w-7 h-7 rounded-full bg-primary-light flex items-center justify-center shrink-0">
                 <span className="text-primary font-bold text-sm">✓</span>

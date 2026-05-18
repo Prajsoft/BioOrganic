@@ -4,20 +4,16 @@ import type { AnchorHTMLAttributes, MouseEvent } from 'react'
 import {
   trackWhatsAppClick,
   trackCallClick,
-  pixelContact,
-  pixelInitiateCheckout,
 } from '@/components/analytics/AnalyticsEvents'
 
 type WhatsAppProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string
   source: string
-  initiateCheckoutItem?: string
 }
 
 export function TrackedWhatsAppLink({
   href,
   source,
-  initiateCheckoutItem,
   onClick,
   ...props
 }: WhatsAppProps) {
@@ -26,8 +22,6 @@ export function TrackedWhatsAppLink({
     if (event.defaultPrevented) return
 
     trackWhatsAppClick(source)
-    pixelContact()
-    if (initiateCheckoutItem) pixelInitiateCheckout(initiateCheckoutItem)
   }
 
   return (

@@ -21,7 +21,7 @@ export default function Testimonials() {
           {visible.map((t) => (
             <div
               key={t.name}
-              className="bg-white rounded-xl shadow-sm p-6 flex flex-col gap-4"
+              className="bg-white/80 backdrop-blur-sm border border-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-6 flex flex-col gap-4"
             >
               {/* Stars */}
               <div className="flex items-center gap-0.5">

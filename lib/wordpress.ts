@@ -14,15 +14,7 @@ export type WPPost = {
   }
 }
 
-const POST_LIST_FIELDS = [
-  'id',
-  'slug',
-  'date',
-  'title',
-  'excerpt',
-  '_embedded.wp:featuredmedia.source_url',
-  '_embedded.wp:featuredmedia.alt_text',
-].join(',')
+const POST_LIST_FIELDS = 'id,slug,date,title,excerpt,_embedded'
 
 async function fetchWordPress<T>(path: string, fallback: T): Promise<T> {
   try {

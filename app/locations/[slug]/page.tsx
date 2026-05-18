@@ -45,8 +45,6 @@ export default async function LocationPage({ params }: { params: Promise<Params>
     ]),
   ]
 
-  const mapsHref = `https://maps.google.com?q=${encodeURIComponent(location.address)}`
-
   return (
     <>
       <JsonLd schema={schema} />
@@ -129,24 +127,20 @@ export default async function LocationPage({ params }: { params: Promise<Params>
         </div>
       </section>
 
-      {/* ── 4. Office address card + warranty note ── */}
+      {/* ── 4. Contact + warranty ── */}
       <section className="bg-white py-8">
         <div className="max-w-4xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
 
-            {/* Office card */}
+            {/* Contact card */}
             <div className="border border-gray-200 rounded-2xl p-6 space-y-4">
               <h2 className="font-semibold text-gray-900">
-                Our {location.city} Office
+                Book a Service in {location.city}
               </h2>
               <div className="space-y-3 text-sm text-gray-600">
-                <div className="flex items-start gap-2.5">
-                  <MapPin size={15} className="text-primary shrink-0 mt-0.5" />
-                  <span>{location.address}</span>
-                </div>
                 <div className="flex items-center gap-2.5">
                   <Phone size={15} className="text-primary shrink-0" />
-                  <TrackedCallLink href={siteConfig.phoneHref} source={`location_office_${slug}`} className="hover:text-primary transition-colors">
+                  <TrackedCallLink href={siteConfig.phoneHref} source={`location_contact_${slug}`} className="hover:text-primary transition-colors">
                     {siteConfig.phoneFormatted}
                   </TrackedCallLink>
                 </div>
@@ -154,7 +148,7 @@ export default async function LocationPage({ params }: { params: Promise<Params>
                   <MessageCircle size={15} className="text-green-500 shrink-0" />
                   <TrackedWhatsAppLink
                     href={siteConfig.whatsappHref}
-                    source={`location_office_${slug}`}
+                    source={`location_contact_${slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-primary transition-colors"
@@ -167,14 +161,6 @@ export default async function LocationPage({ params }: { params: Promise<Params>
                   <span>{siteConfig.hours}</span>
                 </div>
               </div>
-              <a
-                href={mapsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-sm font-medium text-primary hover:underline"
-              >
-                Get Directions on Google Maps →
-              </a>
             </div>
 
             {/* Warranty callout */}
@@ -188,8 +174,7 @@ export default async function LocationPage({ params }: { params: Promise<Params>
                   All pest control services in {location.city} come with a{' '}
                   <strong className="text-gray-900">1-year warranty</strong>. Termite
                   treatment is backed by our{' '}
-                  <strong className="text-gray-900">3-year warranty</strong> — the
-                  longest in Delhi NCR, provided in writing at no extra charge.
+                  <strong className="text-gray-900">3-year warranty</strong> — provided in writing at no extra charge.
                 </p>
               </div>
             </div>

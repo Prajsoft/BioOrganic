@@ -139,8 +139,8 @@ export default function ContactPage() {
                     <MapPin size={18} className="text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">Head Office</p>
-                    <p className="font-semibold text-gray-900 text-sm mt-0.5">Ghaziabad (HQ)</p>
+                    <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">Registered Office</p>
+                    <p className="font-semibold text-gray-900 text-sm mt-0.5">Ghaziabad</p>
                     <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{siteConfig.address}</p>
                   </div>
                 </div>
@@ -150,32 +150,26 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── 3. Office Grid ── */}
+      {/* ── 3. We Come to You ── */}
       <section className="bg-white py-12">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">Our Service Offices</h2>
-          <p className="text-sm text-gray-500 mb-8">
-            We operate from 8 offices across Delhi NCR for fast local response.
+          <h2 className="text-2xl font-semibold text-gray-900 mb-2">We Come to You</h2>
+          <p className="text-gray-500 mb-6 max-w-2xl">
+            No need to visit us. Our certified technicians travel to your home or office across Delhi NCR — just book a slot and we&apos;ll be at your door.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="flex flex-wrap gap-2">
             {locations.map((loc) => (
-              <div
+              <span
                 key={loc.slug}
-                className="border border-gray-200 rounded-xl p-5 bg-gray-50 space-y-2"
+                className="inline-flex items-center gap-1.5 bg-primary-light text-primary text-sm font-medium px-4 py-2 rounded-full"
               >
-                <h3 className="font-semibold text-gray-900">{loc.city}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{loc.address}</p>
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline"
-                >
-                  <MapPin size={11} />
-                  View on Maps
-                </a>
-              </div>
+                <MapPin size={13} className="shrink-0" />
+                {loc.city}
+              </span>
             ))}
+            <span className="inline-flex items-center text-sm text-gray-400 px-3 py-2">
+              & surrounding areas
+            </span>
           </div>
         </div>
       </section>

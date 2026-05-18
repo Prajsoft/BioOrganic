@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, MessageCircle, Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
 import { siteConfig } from '@/data/siteConfig'
 import { services } from '@/data/services'
@@ -11,7 +12,7 @@ import { TrackedCallLink, TrackedWhatsAppLink } from '@/components/analytics/Tra
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  { label: 'Locations', href: '/locations' },
+  { label: 'Service Areas', href: '/locations' },
   { label: 'AMC', href: '/amc' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
@@ -108,8 +109,10 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 bg-white transition-shadow duration-200 ${
-          scrolled ? 'shadow-md' : 'shadow-sm'
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/80 backdrop-blur-md shadow-md border-b border-white/60'
+            : 'bg-white shadow-sm'
         }`}
       >
         {/* ── Top bar ── */}
@@ -135,13 +138,18 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link href="/" className="flex flex-col leading-tight shrink-0">
-              <span className="text-lg font-bold">
+            <Link href="/" className="flex items-center gap-2.5 shrink-0">
+              <Image
+                src="/images/BioLogo.png"
+                alt="Bio Organic Pest Control"
+                width={48}
+                height={58}
+                className="h-12 w-auto object-contain"
+                priority
+              />
+              <span className="text-base font-bold leading-tight">
                 <span className="text-primary">Bio Organic</span>
                 <span className="text-gray-600"> Pest Control</span>
-              </span>
-              <span className="text-xs text-gray-400 tracking-wide">
-                Est. {siteConfig.established} &middot; Govt. Licensed
               </span>
             </Link>
 
@@ -227,7 +235,7 @@ export default function Header() {
               </div>
 
               <Link href="/locations" className="px-3 py-2 rounded hover:text-primary transition-colors">
-                Locations
+                Service Areas
               </Link>
               <Link href="/amc" className="px-3 py-2 rounded hover:text-primary transition-colors">
                 AMC
@@ -241,7 +249,7 @@ export default function Header() {
             </nav>
 
             {/* Desktop right CTA */}
-            <div className="hidden lg:flex flex-col items-end gap-0.5 shrink-0">
+            <div className="hidden lg:flex items-center shrink-0">
               <TrackedWhatsAppLink
                 href={siteConfig.whatsappHref}
                 source="header_desktop"
@@ -253,14 +261,6 @@ export default function Header() {
                 <MessageCircle size={16} aria-hidden="true" />
                 Chat on WhatsApp
               </TrackedWhatsAppLink>
-              <TrackedCallLink
-                href={siteConfig.phoneHref}
-                source="header_desktop"
-                aria-label="Call Bio Organic Pest Control"
-                className="text-xs text-gray-500 hover:text-primary transition-colors"
-              >
-                {siteConfig.phoneFormatted}
-              </TrackedCallLink>
             </div>
 
             {/* Mobile hamburger */}
@@ -304,12 +304,21 @@ export default function Header() {
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 h-16 border-b border-gray-100 shrink-0">
-          <Link href="/" onClick={() => setDrawerOpen(false)} className="flex flex-col leading-tight">
-            <span className="text-base font-bold">
-              <span className="text-primary">Bio Organic</span>
-              <span className="text-gray-600"> Pest Control</span>
-            </span>
-            <span className="text-xs text-gray-400">Est. {siteConfig.established} · Govt. Licensed</span>
+          <Link href="/" onClick={() => setDrawerOpen(false)} className="flex items-center gap-2 shrink-0">
+            <Image
+              src="/images/BioLogo.png"
+              alt="Bio Organic Pest Control"
+              width={32}
+              height={38}
+              className="object-contain w-auto"
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="text-base font-bold">
+                <span className="text-primary">Bio Organic</span>
+                <span className="text-gray-600"> Pest Control</span>
+              </span>
+              <span className="text-xs text-gray-400">Est. {siteConfig.established} · Govt. Licensed</span>
+            </div>
           </Link>
           <button
             ref={closeButtonRef}

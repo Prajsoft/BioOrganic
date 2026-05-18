@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, MessageCircle, MapPin, Clock, Star } from 'lucide-react'
 import { siteConfig } from '@/data/siteConfig'
 import { services } from '@/data/services'
@@ -63,11 +64,20 @@ export default function Footer() {
           {/* Column 1 — Brand */}
           <div className="space-y-4">
             <div>
-              <div className="text-lg font-bold leading-tight">
-                <span className="text-primary-light">Bio Organic</span>
-                <span className="text-white"> Pest Control</span>
+              <div className="flex items-center gap-3 mb-1">
+                <Image
+                  src="/images/BioLogo.png"
+                  alt="Bio Organic Pest Control"
+                  width={38}
+                  height={46}
+                  className="object-contain w-auto"
+                />
+                <div className="text-lg font-bold leading-tight">
+                  <span className="text-primary-light">Bio Organic</span>
+                  <span className="text-white"> Pest Control</span>
+                </div>
               </div>
-              <p className="text-xs text-gray-500 mt-0.5">Est. {siteConfig.established} · Govt. Licensed</p>
+              <p className="text-xs text-gray-500">Est. {siteConfig.established} · Govt. Licensed</p>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">{siteConfig.tagline}</p>
 
@@ -191,25 +201,21 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── Office addresses grid ── */}
+        {/* ── Service areas strip ── */}
         <div className="mt-12 pt-10 border-t border-gray-800">
-          <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-6 text-center">
-            Our Offices Across Delhi NCR
-          </h3>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <p className="text-gray-400 text-xs uppercase tracking-widest font-semibold text-center mb-4">
+            We Come to You — Service Areas
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
             {locations.map((loc) => (
-              <div key={loc.slug} className="bg-gray-800 rounded-xl p-4 space-y-1.5">
-                <p className="text-white font-semibold text-sm">{loc.city}</p>
-                <p className="text-gray-400 text-xs leading-relaxed">{loc.address}</p>
-                <a
-                  href={`https://maps.google.com?q=${encodeURIComponent(loc.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-xs text-primary-light hover:underline mt-1"
-                >
-                  Get Directions →
-                </a>
-              </div>
+              <Link
+                key={loc.slug}
+                href={`/locations/${loc.slug}`}
+                className="inline-flex items-center gap-1.5 bg-gray-800 hover:bg-primary/30 border border-gray-700 hover:border-primary/50 text-gray-300 hover:text-primary-light text-xs font-medium px-3 py-1.5 rounded-full transition-colors"
+              >
+                <MapPin size={11} className="shrink-0" />
+                {loc.city}
+              </Link>
             ))}
           </div>
         </div>

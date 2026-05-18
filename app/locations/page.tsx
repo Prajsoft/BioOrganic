@@ -26,10 +26,10 @@ export default function LocationsPage() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
             <div>
               <h1 className="text-3xl md:text-4xl font-semibold text-white">
-                Areas We Serve in Delhi NCR
+                Service Areas in Delhi NCR
               </h1>
               <p className="text-white/70 mt-2">
-                Govt-licensed pest control across 8 locations — same-day service available.
+                Govt-licensed pest control across Delhi NCR — same-day service available.
               </p>
             </div>
             <TrackedCallLink
@@ -63,7 +63,16 @@ export default function LocationsPage() {
                     <p className="text-xs text-gray-500 mt-0.5">{loc.state}</p>
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">{loc.address}</p>
+                <div className="flex flex-wrap gap-1">
+                  {loc.sectors.slice(0, 3).map((s) => (
+                    <span key={s} className="text-xs bg-primary-light text-primary px-2 py-0.5 rounded-full">
+                      {s}
+                    </span>
+                  ))}
+                  {loc.sectors.length > 3 && (
+                    <span className="text-xs text-gray-400">+{loc.sectors.length - 3} more</span>
+                  )}
+                </div>
                 <span className="text-xs font-medium text-primary mt-auto">
                   View services →
                 </span>

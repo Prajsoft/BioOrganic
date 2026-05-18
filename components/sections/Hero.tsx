@@ -46,11 +46,14 @@ export default function Hero() {
           {trustBadges.map((b) => (
             <span
               key={b}
-              className="inline-block bg-white/10 text-white text-xs font-medium px-3 py-1 rounded-full border border-white/20"
+              className="inline-block bg-white/10 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/25 shadow-sm"
             >
               {b}
             </span>
           ))}
+          <span className="inline-block bg-primary/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-primary-light/40 shadow-sm">
+            📍 We Come to You
+          </span>
         </div>
 
         {/* H1 — text-3xl max on mobile */}

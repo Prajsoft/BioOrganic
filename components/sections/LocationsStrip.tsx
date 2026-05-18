@@ -9,8 +9,11 @@ export default function LocationsStrip() {
 
         <div className="text-center mb-8">
           <h2 className="text-2xl font-semibold text-gray-900">
-            Areas We Serve in Delhi NCR
+            We Come to You — Across Delhi NCR
           </h2>
+          <p className="mt-2 text-sm text-gray-500">
+            Our technicians travel to your home or office. No need to visit us.
+          </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-6">

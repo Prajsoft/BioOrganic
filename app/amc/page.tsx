@@ -122,7 +122,6 @@ export default function AmcPage() {
               <TrackedWhatsAppLink
                 href={siteConfig.whatsappHref}
                 source="amc_page"
-                initiateCheckoutItem="AMC Plan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white text-green-700 font-semibold px-6 py-3 rounded-xl hover:bg-green-50 transition-colors shadow min-h-[44px]"
@@ -196,7 +195,6 @@ export default function AmcPage() {
                 <TrackedWhatsAppLink
                   href={siteConfig.whatsappHref}
                   source="amc_sidebar"
-                  initiateCheckoutItem="AMC Plan"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full bg-white text-green-700 font-semibold py-3 rounded-xl hover:bg-green-50 transition-colors"
