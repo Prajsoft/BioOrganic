@@ -26,17 +26,16 @@ export default function Hero() {
 
       {/* Hero image */}
       <Image
-        src="/images/hero/hero.svg"
+        src="/images/pest1.png"
         alt="Pest control technician treating a home in Delhi NCR"
         fill
         priority
-        unoptimized
         sizes="100vw"
-        className="object-cover object-center opacity-30"
+        className="object-cover object-center opacity-60"
       />
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/65" />
+      <div className="absolute inset-0 bg-black/45" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 py-16 text-center">
@@ -96,8 +95,31 @@ export default function Hero() {
           </TrackedCallLink>
         </div>
 
+        {/* Urgency quick-select */}
+        <div className="mb-8">
+          <p className="text-white/50 text-xs mb-3 uppercase tracking-widest">What do you need?</p>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {[
+              { label: '⚡ Same-day visit', text: "Hi! I need same-day pest control. Please advise on availability." },
+              { label: '🔍 Free inspection', text: "Hi! I'd like to book a free pest inspection. Can you schedule a visit?" },
+              { label: '📋 AMC plan', text: "Hi! I'm interested in your Annual Maintenance Contract (AMC) plans. Please share details." },
+              { label: '🤔 Not sure — advise me', text: "Hi! I have a pest problem but I'm not sure which service I need. Can you help?" },
+            ].map(({ label, text }) => (
+              <a
+                key={label}
+                href={`https://wa.me/919999266042?text=${encodeURIComponent(text)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-xs font-medium px-4 py-2 rounded-full transition-colors"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom stats row */}
-        <div className="border-t border-white/10 mt-8 pt-6 flex flex-wrap items-center justify-center gap-6 md:gap-10">
+        <div className="border-t border-white/10 pt-6 flex flex-wrap items-center justify-center gap-6 md:gap-10">
           {stats.map((s, i) => (
             <div key={s.label} className="flex items-center gap-2 text-white">
               {i > 0 && (

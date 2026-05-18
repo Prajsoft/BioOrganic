@@ -7,9 +7,12 @@ import CTABanner from '@/components/ui/CTABanner'
 import { htmlToPlainText } from '@/lib/sanitize'
 
 export const metadata: Metadata = {
-  title: 'Pest Control Blog & Tips | Bio Organic Pest Control Delhi NCR',
+  title: 'Pest Control Blog & Tips | Delhi NCR',
   description:
     'Expert pest control tips, prevention guides and local service updates for homeowners and businesses in Delhi NCR.',
+  alternates: {
+    canonical: 'https://bioorganicpestcontrol.in/blog',
+  },
 }
 
 function formatDate(iso: string) {

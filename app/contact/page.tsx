@@ -8,7 +8,7 @@ import CTABanner from '@/components/ui/CTABanner'
 import { TrackedWhatsAppLink, TrackedCallLink } from '@/components/analytics/TrackedLinks'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Book Pest Control in Delhi NCR | Bio Organic',
+  title: 'Contact Us | Book Pest Control in Delhi NCR',
   description:
     'Get a free pest control quote for your home or business in Delhi NCR. Call +91-9999266042 or fill in the form and we will respond within 2 hours.',
   alternates: { canonical: 'https://bioorganicpestcontrol.in/contact' },

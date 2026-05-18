@@ -5,7 +5,7 @@ import { pests } from '@/data/pests'
 import PestCard from '@/components/ui/PestCard'
 
 export const metadata: Metadata = {
-  title: 'Pest Control Library | Know Your Pest | Bio Organic',
+  title: 'Pest Control Library | Know Your Pest',
   description:
     'Identify common household pests in Delhi NCR. Learn the warning signs and find the right treatment for termites, cockroaches, bed bugs, mosquitoes and more.',
   alternates: { canonical: 'https://bioorganicpestcontrol.in/pest-control' },

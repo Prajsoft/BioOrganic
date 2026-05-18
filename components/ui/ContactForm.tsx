@@ -83,6 +83,15 @@ export default function ContactForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Honeypot — must stay empty; bots fill it and get silently discarded */}
+        <input
+          type="text"
+          name="_hp"
+          tabIndex={-1}
+          aria-hidden="true"
+          autoComplete="off"
+          style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }}
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">

@@ -6,7 +6,7 @@ import { siteConfig } from '@/data/siteConfig'
 import { TrackedCallLink } from '@/components/analytics/TrackedLinks'
 
 export const metadata: Metadata = {
-  title: 'Pest Control Service Areas | Delhi NCR | Bio Organic',
+  title: 'Pest Control Service Areas in Delhi NCR',
   description:
     'Pest control in Ghaziabad, Noida, Greater Noida, Indirapuram, Noida Extension, East Delhi, Vaishali, Vasundhara.',
   alternates: { canonical: 'https://bioorganicpestcontrol.in/locations' },

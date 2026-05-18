@@ -6,7 +6,7 @@ import ServiceCard from '@/components/ui/ServiceCard'
 import CTABanner from '@/components/ui/CTABanner'
 
 export const metadata: Metadata = {
-  title: 'All Pest Control Services in Delhi NCR | Bio Organic Pest Control',
+  title: 'All Pest Control Services in Delhi NCR',
   description:
     'Browse all 13 pest control services — termite, cockroach, bed bug, mosquito, rodent, and more. Govt-licensed, non-toxic, warranted. Serving Delhi NCR since 2016.',
   alternates: { canonical: 'https://bioorganicpestcontrol.in/services' },

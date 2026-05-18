@@ -12,7 +12,7 @@ import { getLocalBusinessSchema, getServiceSchema, getFAQSchema } from '@/lib/sc
 import { TrackedCallLink, TrackedWhatsAppLink } from '@/components/analytics/TrackedLinks'
 
 export const metadata: Metadata = {
-  title: 'Annual Maintenance Contract (AMC) for Pest Control | Delhi NCR | Bio Organic',
+  title: 'Annual Maintenance Contract (AMC) | Pest Control Delhi NCR',
   description:
     'Protect your home or business year-round with our AMC pest control plans in Delhi NCR. Scheduled visits, priority service, non-toxic treatment. Call +91-9999266042.',
   alternates: { canonical: 'https://bioorganicpestcontrol.in/amc' },

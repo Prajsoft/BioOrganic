@@ -31,8 +31,9 @@ export async function generateMetadata(
   const description = htmlToPlainText(post.excerpt.rendered).slice(0, 160)
 
   return {
-    title: `${title} | Bio Organic Pest Control`,
+    title,
     description,
+    alternates: { canonical: `https://bioorganicpestcontrol.in/blog/${slug}` },
     openGraph: featuredImage ? { images: [{ url: featuredImage }] } : undefined,
   }
 }

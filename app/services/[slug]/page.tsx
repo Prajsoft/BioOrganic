@@ -102,6 +102,29 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
         </div>
       </section>
 
+      {/* ── Urgency strip ── */}
+      <div className="bg-white border-b border-gray-100 py-3">
+        <div className="max-w-5xl mx-auto px-4 flex flex-wrap items-center gap-2">
+          <span className="text-xs text-gray-400 font-medium shrink-0 mr-1">Quick enquiry:</span>
+          {[
+            { label: '⚡ Same-day visit', text: `Hi! I need same-day ${service.shortTitle}. Please advise on availability.` },
+            { label: '🔍 Book inspection', text: `Hi! I'd like to book a free inspection for ${service.shortTitle}. Can you schedule a visit?` },
+            { label: '💬 Get a quote', text: `Hi! I'd like a quote for ${service.shortTitle} at my property. Please share pricing.` },
+            { label: '📋 AMC enquiry', text: `Hi! I'm interested in an Annual Maintenance Contract that includes ${service.shortTitle}. Please share details.` },
+          ].map(({ label, text }) => (
+            <a
+              key={label}
+              href={`https://wa.me/919999266042?text=${encodeURIComponent(text)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-primary-light border border-primary/20 text-primary text-xs font-medium px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
       {/* ── 2. Overview ── */}
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-4">

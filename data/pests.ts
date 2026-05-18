@@ -2,7 +2,7 @@ export const pests = [
   {
     slug: 'termites',
     name: 'Termites',
-    metaTitle: 'Termites (Deemak) — Signs, Damage & Treatment | Bio Organic',
+    metaTitle: 'Termites (Deemak) — Signs, Damage & Treatment',
     metaDescription: 'Learn to identify termite infestation signs in your home. Bio Organic provides expert termite control in Delhi NCR. Call +91-9999266042.',
     heroHeading: 'Termites (Deemak) — The Silent Destroyers in Your Walls',
     description: "Termites, commonly known as deemak in India, are wood-eating insects that live in large underground colonies and access your home through the soil or cracks in the foundation. They build mud tubes along walls and inside wooden structures, consuming cellulose material from the inside out while leaving the outer surface intact. This makes infestations extremely difficult to detect until significant damage has already occurred. A mature termite colony can number in the millions and, left untreated, can render wooden furniture, flooring, door frames, and structural timber completely hollow within a few years. Delhi NCR's soil type and warm climate make it one of the highest-risk regions for subterranean termite activity in India.",
@@ -18,7 +18,7 @@ export const pests = [
   {
     slug: 'cockroach',
     name: 'Cockroaches',
-    metaTitle: 'Cockroach Infestation — Signs & Control | Bio Organic Pest Control',
+    metaTitle: 'Cockroach Infestation — Signs & Control',
     metaDescription: 'Identify cockroach infestation signs in your kitchen and home. Expert cockroach control in Delhi NCR. Call +91-9999266042.',
     heroHeading: 'Cockroaches — Kitchen Pests That Spread Bacteria and Disease',
     description: "Cockroaches are among the most resilient pests found in homes and commercial kitchens across Delhi NCR. The German cockroach and American cockroach are the two species most commonly encountered. They are nocturnal, hiding during the day inside modular kitchen hinges, behind refrigerators, under sinks, and inside electrical switchboards. Cockroaches contaminate food and food preparation surfaces with bacteria including Salmonella and E. coli, and their shed skins and droppings are a known trigger for asthma and allergic reactions, particularly in children. A single pair of cockroaches can produce thousands of offspring in a year, meaning even a small infestation can escalate rapidly if not treated early.",
@@ -34,7 +34,7 @@ export const pests = [
   {
     slug: 'bed-bugs',
     name: 'Bed Bugs',
-    metaTitle: 'Bed Bug Infestation — Signs, Bites & Treatment | Bio Organic',
+    metaTitle: 'Bed Bug Infestation — Signs, Bites & Treatment',
     metaDescription: 'Identify bed bug signs and bites in your mattress and furniture. Expert bed bug control in Delhi NCR. Call +91-9999266042.',
     heroHeading: 'Bed Bugs — Tiny Pests That Steal Your Sleep',
     description: "Bed bugs are small, flat, reddish-brown insects that feed exclusively on human blood, typically at night while their host is sleeping. They are expert hitchhikers, travelling into homes on luggage, second-hand furniture, used mattresses, and clothing. Once established, they hide in the seams of mattresses, inside bed frames and headboards, behind wall sockets, inside sofa joints, and between folds of curtains — anywhere within 1.5 metres of where a person sleeps. Bed bug bites cause red, itchy welts that often appear in lines or clusters and can take several hours to manifest, making the source difficult to identify. They do not transmit diseases but cause significant psychological distress and sleep disruption. They are difficult to eliminate without professional treatment due to their hiding behaviour and egg resistance to standard insecticides.",
@@ -50,7 +50,7 @@ export const pests = [
   {
     slug: 'mosquito',
     name: 'Mosquitoes',
-    metaTitle: 'Mosquito Control — Dengue, Malaria Prevention | Bio Organic',
+    metaTitle: 'Mosquito Control — Dengue, Malaria Prevention',
     metaDescription: 'Protect your family from dengue, malaria & chikungunya. Expert mosquito control in Delhi NCR. Call +91-9999266042.',
     heroHeading: 'Mosquitoes — Carriers of Dengue, Malaria and Chikungunya',
     description: "Mosquitoes are the deadliest animals on the planet due to the diseases they transmit. In Delhi NCR, three mosquito-borne diseases pose the greatest public health risk: dengue fever (transmitted by the Aedes aegypti mosquito, which breeds in clean stagnant water and bites during the day), malaria (transmitted by the Anopheles mosquito, which bites from dusk to dawn), and chikungunya (also transmitted by Aedes aegypti). The monsoon season from July to September dramatically increases mosquito breeding as rainfall creates stagnant water in cooler tanks, flower pots, drains, and construction sites. Delhi NCR reports thousands of dengue cases every monsoon season. Effective mosquito control requires eliminating breeding sites in addition to killing adult mosquitoes, as chemical knockdown alone provides only temporary relief.",
@@ -66,7 +66,7 @@ export const pests = [
   {
     slug: 'rodents',
     name: 'Rodents',
-    metaTitle: 'Rodent Control — Rats & Mice Signs & Treatment | Bio Organic',
+    metaTitle: 'Rodent Control — Rats & Mice Signs & Treatment',
     metaDescription: 'Identify rat and mouse infestation signs in your home or business. Expert rodent control in Delhi NCR. Call +91-9999266042.',
     heroHeading: 'Rodents — Rats and Mice That Damage Property and Spread Disease',
     description: "Rodents — primarily the common house mouse, the black rat, and the brown rat — are major pests in both residential and commercial properties across Delhi NCR. They gnaw through electrical wiring (a leading cause of unexplained house fires), food packaging, insulation, and structural material. Rodents contaminate far more food than they consume through their droppings, urine, and fur. They reproduce rapidly, with a single pair of mice capable of producing up to 60 offspring per year under ideal conditions. They carry diseases including leptospirosis, salmonellosis, and hantavirus. Rodents typically enter buildings through gaps as small as 6mm for mice and 20mm for rats — around pipes, in roof soffits, through air vents, and along drainage channels. Population control requires both killing existing rodents and preventing new entry.",
@@ -82,7 +82,7 @@ export const pests = [
   {
     slug: 'ants',
     name: 'Ants',
-    metaTitle: 'Ant Infestation — Signs & Control | Bio Organic Pest Control',
+    metaTitle: 'Ant Infestation — Signs & Control',
     metaDescription: 'Identify ant infestation signs in your home. Expert ant control in Delhi NCR — targets the queen and colony. Call +91-9999266042.',
     heroHeading: 'Ants — From Kitchen Nuisance to Structural Pest',
     description: "While most ant species are merely a nuisance, ant infestations in homes across Delhi NCR can range from the common sugar-seeking black ant trails in kitchens to more damaging species such as carpenter ants that excavate wood to build their nests. Ants enter properties through tiny cracks in walls, under doors, and along plumbing and electrical conduits in search of food and water. A single ant colony can contain hundreds of thousands of workers, and visible forager ants on countertops represent only a tiny fraction of the total population. Ants contaminate food, and certain species — including fire ants and red ants — deliver painful stings. Carpenter ants cause structural damage to wood similar to termites, though they do not eat the wood but merely hollow it out. Colony elimination rather than surface killing is essential for permanent control.",
@@ -98,7 +98,7 @@ export const pests = [
   {
     slug: 'wood-borer',
     name: 'Wood Borer',
-    metaTitle: 'Wood Borer Beetles — Signs & Treatment | Bio Organic Pest Control',
+    metaTitle: 'Wood Borer Beetles — Signs & Treatment',
     metaDescription: 'Identify wood borer signs in your furniture and woodwork. Expert wood borer treatment in Delhi NCR. Call +91-9999266042.',
     heroHeading: 'Wood Borer — The Beetle That Eats Your Furniture from Inside',
     description: "Wood borer beetles are a group of insects whose larvae tunnel through and feed on wood, causing internal structural damage that is often invisible until the infestation is well advanced. The most common species found in Delhi NCR homes is the powderpost beetle, which prefers hardwoods, and the common furniture beetle, which attacks both hardwood and softwood. Adult beetles lay eggs in the pores or cracks of wood surfaces. The hatched larvae spend months to years tunnelling through the wood before emerging as adults through characteristic small, round exit holes on the surface. The fine powder that falls from these holes — called frass — is the most visible sign of an active infestation. Wood borer commonly affects wooden furniture, parquet flooring, timber roof beams, wooden door and window frames, and decorative woodwork. New constructions with freshly installed woodwork are particularly vulnerable.",
@@ -114,7 +114,7 @@ export const pests = [
   {
     slug: 'flies',
     name: 'Flies',
-    metaTitle: 'Fly Infestation — Signs & Control | Bio Organic Pest Control',
+    metaTitle: 'Fly Infestation — Signs & Control',
     metaDescription: 'Control fly infestations in your home, restaurant or warehouse in Delhi NCR. Expert treatment available. Call +91-9999266042.',
     heroHeading: 'Flies — Food Contaminators That Indicate Hygiene Risks',
     description: "House flies, fruit flies, and drain flies are the three fly species most commonly dealt with in homes and businesses across Delhi NCR. House flies are mechanical disease vectors, transferring pathogens from waste and decaying matter to food surfaces via their feet and mouthparts in a matter of seconds. A single house fly carries millions of bacteria on its body surface. Fruit flies are attracted to fermenting or overripe fruit, sugary liquids, and moist organic material in drains. Drain flies breed in the slimy organic matter that accumulates inside drainage pipes and are commonly found in bathrooms and kitchens. In commercial settings — particularly restaurants and food processing units — fly infestations represent a serious food safety risk and can result in regulatory action. Large fly populations are also an indicator of underlying hygiene or waste management issues that require attention alongside the pest treatment itself.",
@@ -130,7 +130,7 @@ export const pests = [
   {
     slug: 'lizard',
     name: 'Lizards',
-    metaTitle: 'House Lizard Control — Signs & Repellent Treatment | Bio Organic',
+    metaTitle: 'House Lizard Control — Signs & Repellent Treatment',
     metaDescription: 'Keep house lizards out of your home in Delhi NCR with non-toxic repellent treatment. Call +91-9999266042.',
     heroHeading: 'House Lizards — Common but Unwelcome Visitors in Delhi NCR Homes',
     description: "The common house gecko (Hemidactylus flaviviridis) is found in almost every home across Delhi NCR. While geckos are not venomous and are technically beneficial as they eat mosquitoes, cockroaches, and other insects, their presence in kitchens and living areas is considered unhygienic due to their droppings, which can contaminate food surfaces and cooking utensils. Their droppings also carry Salmonella bacteria in some cases. Lizards are attracted to warmth and light sources that draw insects — ceiling lights, kitchen backlights, and electronic devices are common gathering points. They enter homes through gaps around window frames, door edges, utility pipe penetrations, and ventilation openings. In homes with high insect populations, lizard numbers will be correspondingly high. Effective lizard management therefore requires controlling both the insect population that attracts them and the structural gaps that allow them to enter.",

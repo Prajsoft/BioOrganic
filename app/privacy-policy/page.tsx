@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Bio Organic Pest Control',
+  title: 'Privacy Policy',
   description: 'How Bio Organic Pest Control collects and uses your personal information.',
   robots: { index: false },
 }

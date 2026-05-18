@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ShieldCheck, Leaf, FlaskConical, ChevronRight } from 'lucide-react'
 import { siteConfig } from '@/data/siteConfig'
@@ -6,9 +7,12 @@ import CTABanner from '@/components/ui/CTABanner'
 import TrustedBy from '@/components/sections/TrustedBy'
 
 export const metadata: Metadata = {
-  title: 'About Us | Bio Organic Pest Control | Est. 2016 Delhi NCR',
+  title: 'About Us | Est. 2016 | Delhi NCR Pest Control',
   description:
     'Bio Organic Pest Control — est. 2016. Govt-licensed, non-toxic pest control serving 5,000+ homes and businesses in Delhi NCR since 2016.',
+  alternates: {
+    canonical: 'https://bioorganicpestcontrol.in/about',
+  },
 }
 
 const aboutStats = [
@@ -127,23 +131,21 @@ export default function AboutPage() {
       {/* ── 4. Trusted By ── */}
       <TrustedBy />
 
-      {/* ── 5. Team proof placeholder ── */}
+      {/* ── 5. Technician photo ── */}
       <section className="bg-gray-bg py-12">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white border border-primary/10 rounded-2xl aspect-[16/7] flex flex-col items-center justify-center gap-3 text-primary shadow-sm">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="w-16 h-16 opacity-60"
-              aria-hidden="true"
-            >
-              <path d="M12 3 20 7v5c0 5-3.2 8.6-8 10-4.8-1.4-8-5-8-10V7l8-4Z" />
-              <path d="m8.5 12 2.2 2.2L16 9" />
-            </svg>
-            <p className="text-sm font-semibold text-gray-900">Government-licensed team</p>
-            <p className="text-xs text-gray-500">Add real team and licence photos here before campaign launch.</p>
+          <div className="relative rounded-2xl overflow-hidden aspect-[16/7] shadow-md">
+            <Image
+              src="/images/TechPest.png"
+              alt="Bio Organic Pest Control certified technician at work"
+              fill
+              sizes="(max-width: 768px) 100vw, 896px"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <p className="absolute bottom-4 left-5 text-white text-sm font-medium">
+              Government-licensed technicians — certified, verified, insured
+            </p>
           </div>
         </div>
       </section>

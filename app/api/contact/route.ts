@@ -1,39 +1,87 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { sendCapiEvent, extractUserData, generateEventId } from '@/lib/metaCapi'
 
-type ContactRequest = {
+type ContactBody = {
   name?: unknown
   phone?: unknown
   city?: unknown
   service?: unknown
   message?: unknown
+  _hp?: unknown       // honeypot — must be empty
+  _eventId?: unknown
+  _fbp?: unknown
+  _fbc?: unknown
 }
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 
-function asTrimmedString(value: unknown) {
-  return typeof value === 'string' ? value.trim() : ''
+// Web3Forms keys are UUIDs: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+const WEB3FORMS_KEY_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+function isConfigured() {
+  const key = process.env.WEB3FORMS_ACCESS_KEY
+  return typeof key === 'string' && WEB3FORMS_KEY_RE.test(key)
 }
 
-function invalidConfig() {
-  const key = process.env.WEB3FORMS_ACCESS_KEY
-  return !key || key.startsWith('REPLACE_') || key.includes('XXXXXXXX')
+// ── IP rate limiting ─────────────────────────────────────────────────────────
+// In-memory; resets on cold start. Good enough to block burst spam on Vercel
+// where most requests in a short window hit the same instance.
+const RATE_WINDOW_MS = 15 * 60 * 1000   // 15 min
+const RATE_MAX = 3                        // 3 submissions per IP per window
+
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+
+function getIp(req: NextRequest): string {
+  return (
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    req.headers.get('x-real-ip') ||
+    '0.0.0.0'
+  )
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
+    return false
+  }
+  if (entry.count >= RATE_MAX) return true
+  entry.count++
+  return false
+}
+
+function str(v: unknown) {
+  return typeof v === 'string' ? v.trim() : ''
 }
 
 export async function POST(request: NextRequest) {
-  let payload: ContactRequest & { _eventId?: string; _fbp?: string; _fbc?: string }
+  let body: ContactBody
 
   try {
-    payload = await request.json()
+    body = await request.json()
   } catch {
-    return NextResponse.json({ message: 'Invalid form data.' }, { status: 400 })
+    return NextResponse.json({ message: 'Invalid request.' }, { status: 400 })
   }
 
-  const name = asTrimmedString(payload.name)
-  const phone = asTrimmedString(payload.phone)
-  const city = asTrimmedString(payload.city)
-  const service = asTrimmedString(payload.service)
-  const message = asTrimmedString(payload.message)
+  // Honeypot — bots fill it; return 200 silently so they think it worked
+  if (str(body._hp)) {
+    return NextResponse.json({ ok: true })
+  }
+
+  const ip = getIp(request)
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { message: 'Too many requests. Please wait a few minutes and try again.' },
+      { status: 429 },
+    )
+  }
+
+  const name    = str(body.name)
+  const phone   = str(body.phone)
+  const city    = str(body.city)
+  const service = str(body.service)
+  const message = str(body.message)
 
   if (!name || !phone || !city || !service) {
     return NextResponse.json(
@@ -49,16 +97,16 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  if (invalidConfig()) {
+  if (!isConfigured()) {
     return NextResponse.json(
-      { message: 'Lead form is not configured yet. Please call or WhatsApp us directly.' },
+      { message: 'Lead form is not configured. Please call or WhatsApp us directly.' },
       { status: 503 },
     )
   }
 
-  const eventId = asTrimmedString(payload._eventId) || generateEventId('lead')
-  const fbp = asTrimmedString(payload._fbp)
-  const fbc = asTrimmedString(payload._fbc)
+  const eventId = str(body._eventId) || generateEventId('lead')
+  const fbp     = str(body._fbp)
+  const fbc     = str(body._fbc)
 
   try {
     const response = await fetch(WEB3FORMS_ENDPOINT, {
@@ -68,11 +116,7 @@ export async function POST(request: NextRequest) {
         access_key: process.env.WEB3FORMS_ACCESS_KEY,
         subject: `Pest control enquiry from ${name}`,
         from_name: 'Bio Organic Pest Control Website',
-        name,
-        phone,
-        city,
-        service,
-        message,
+        name, phone, city, service, message,
       }),
     })
 
@@ -83,7 +127,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Fire Meta CAPI Lead server-side — has real IP + user agent, most reliable signal
     const userData = extractUserData(request)
     if (fbp) userData.fbp = fbp
     if (fbc) userData.fbc = fbc

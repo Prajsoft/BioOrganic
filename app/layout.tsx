@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Bio Organic Pest Control',
     images: [
       {
-        url: '/images/social-card.svg',
+        url: '/images/Socialpest.png',
         width: 1200,
         height: 630,
         alt: 'Bio Organic Pest Control in Delhi NCR',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/social-card.svg'],
+    images: ['/images/Socialpest.png'],
   },
   icons: {
     icon: '/favicon.ico',
