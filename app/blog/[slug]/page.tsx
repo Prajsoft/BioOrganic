@@ -24,7 +24,12 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) return {}
+  if (!post) {
+    return {
+      description: 'Pest control tips, prevention guides and service updates for homes and businesses in Delhi NCR.',
+      alternates: { canonical: `https://bioorganicpestcontrol.in/blog/${slug}` },
+    }
+  }
 
   const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
   const title = htmlToPlainText(post.title.rendered)
