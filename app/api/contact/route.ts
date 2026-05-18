@@ -113,6 +113,8 @@ export async function POST(request: NextRequest) {
     })
 
     if (!response.ok) {
+      const errorBody = await response.text().catch(() => '(unreadable)')
+      console.error(`[contact] Web3Forms error ${response.status}:`, errorBody)
       return NextResponse.json(
         { message: 'Unable to submit right now. Please call or WhatsApp us directly.' },
         { status: 502 },
