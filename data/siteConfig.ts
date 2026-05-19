@@ -38,7 +38,7 @@ export const siteConfig = {
     { value: '9am–7pm', label: 'Available All Days' },
   ],
   analytics: {
-    gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
+    gaMeasurementId: 'G-G9J0DHVJSX',
     metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || '',
   },
 }

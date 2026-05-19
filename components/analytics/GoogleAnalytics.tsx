@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const GA_ID = 'G-G9J0DHVJSX'
 const AW_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
 
 const isReal = (id: string | undefined, prefix: string) =>
