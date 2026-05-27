@@ -138,16 +138,16 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 shrink-0">
+            <Link href="/" className="flex items-center gap-2 shrink-0">
               <Image
                 src="/images/BioLogo.png"
                 alt="Bio Organic Pest Control"
                 width={48}
                 height={58}
-                className="h-12 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
                 priority
               />
-              <span className="text-base font-bold leading-tight">
+              <span className="text-sm sm:text-base font-bold leading-tight">
                 <span className="text-primary">Bio Organic</span>
                 <span className="text-gray-600"> Pest Control</span>
               </span>
@@ -262,6 +262,16 @@ export default function Header() {
                 Chat on WhatsApp
               </TrackedWhatsAppLink>
             </div>
+
+            {/* Mobile call CTA */}
+            <TrackedCallLink
+              href={siteConfig.phoneHref}
+              source="header_mobile_call"
+              aria-label="Call Bio Organic Pest Control"
+              className="lg:hidden flex items-center justify-center min-w-[44px] min-h-[44px] text-primary hover:bg-primary-light rounded-lg transition-colors"
+            >
+              <Phone size={20} aria-hidden="true" />
+            </TrackedCallLink>
 
             {/* Mobile hamburger */}
             <button

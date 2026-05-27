@@ -54,7 +54,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-8">
+    <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-8">
       <h2 className="text-xl font-semibold text-gray-900 mb-6">Request a Free Quote</h2>
 
       {state === 'success' && (

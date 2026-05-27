@@ -23,7 +23,7 @@ export default function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className="group bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-5 flex flex-col gap-3"
+      className="group bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 p-3.5 sm:p-5 flex flex-col gap-3"
     >
       <Icon size={28} className="text-primary" />
       <div className="flex-1 space-y-1">

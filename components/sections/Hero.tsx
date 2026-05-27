@@ -99,7 +99,7 @@ export default function Hero() {
         </h1>
 
         {/* Subtext */}
-        <p className="text-white/80 text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
+        <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
           Serving Ghaziabad, Noida, Greater Noida, Indirapuram &amp; East Delhi with
           safe, organic, government-approved pest control. Est.&nbsp;{siteConfig.established}.
         </p>

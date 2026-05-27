@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/layout/WhatsAppButton'
+import MobileActionBar from '@/components/layout/MobileActionBar'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
 import MetaPixel from '@/components/analytics/MetaPixel'
 import { GTMScript, GTMNoScript } from '@/components/analytics/GoogleTagManager'
@@ -64,9 +65,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col bg-white text-gray-900">
         <GTMNoScript />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-16 lg:pb-0">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <div className="hidden lg:block"><WhatsAppButton /></div>
+        <MobileActionBar />
         <GTMScript />
         <GoogleAnalytics />
         <MetaPixel />

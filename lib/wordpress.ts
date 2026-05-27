@@ -83,26 +83,18 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 }
 
 export async function getAllPostSlugs(): Promise<string[]> {
+  const cached = readSlugCache()
+  if (cached.length > 0) return cached
   try {
     const posts = await wpFetch<{ slug: string }[]>(
       '/posts?per_page=100&status=publish&_fields=slug',
     )
-    const slugs = posts.map((p) => p.slug)
-    writeSlugCache(slugs)
-    return slugs
+    return posts.map((p) => p.slug)
   } catch (err) {
     console.error('[WordPress] getAllPostSlugs failed:', err)
-    const cached = readSlugCache()
-    if (cached.length > 0) {
-      console.warn(
-        `[WordPress] Falling back to ${cached.length} cached slugs from data/blog-slugs-cache.json. ` +
-        'Blog page count may be stale.',
-      )
-      return cached
-    }
     console.error(
       '[WordPress] No slug cache found. Blog pages will not be generated. ' +
-      'Run a build with API access to populate data/blog-slugs-cache.json.',
+      'Add slugs to data/blog-slugs-cache.json.',
     )
     return []
   }
