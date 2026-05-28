@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# auto-generated at build time from WordPress API
+/data/blog-slugs-cache.json
