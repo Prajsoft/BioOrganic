@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
-import blogSlugsCache from './data/blog-slugs-cache.json'
 
-const blogSlugs = blogSlugsCache as string[]
+const WORDPRESS_BASE = (process.env.WORDPRESS_API_BASE || 'https://bioorganicpestcontrol.in/wp-json/wp/v2').replace(/\/$/, '')
+
+async function fetchBlogSlugs(): Promise<string[]> {
+  if (process.env.WORDPRESS_API_INSECURE === 'true') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+  }
+  try {
+    const res = await fetch(`${WORDPRESS_BASE}/posts?per_page=100&status=publish&_fields=slug`)
+    if (!res.ok) return []
+    const posts = await res.json() as { slug: string }[]
+    return posts.map((p) => p.slug)
+  } catch {
+    return []
+  }
+}
 
 const legacyServiceRedirects = [
   { source: '/termite-control', destination: '/services/termite-control' },
@@ -32,11 +45,6 @@ const legacyPageRedirects = [
   { source: '/annual-maintenance-contract-amc', destination: '/amc' },
 ]
 
-const legacyBlogRedirects = blogSlugs.map((slug) => ({
-  source: `/${slug}`,
-  destination: `/blog/${slug}`,
-}))
-
 const toPermanentRedirect = (redirect: { source: string; destination: string }) => ({
   ...redirect,
   permanent: true,
@@ -53,6 +61,11 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
+    const blogSlugs = await fetchBlogSlugs()
+    const legacyBlogRedirects = blogSlugs.map((slug) => ({
+      source: `/${slug}`,
+      destination: `/blog/${slug}`,
+    }))
     return [
       ...legacyPageRedirects,
       ...legacyServiceRedirects,
