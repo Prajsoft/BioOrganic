@@ -20,13 +20,6 @@ const trustBadges = [
   'BIS Approved Products',
 ]
 
-const stats = [
-  { value: '5,000+', label: 'Clients' },
-  { value: siteConfig.experienceYears, label: 'Years' },
-  { value: '4.7★', label: 'Google' },
-  { value: '9am–7pm', label: 'All Days' },
-]
-
 const quickActions = [
   {
     label: 'Same-day visit',
@@ -153,18 +146,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Bottom stats row */}
-        <div className="border-t border-white/10 pt-6 flex flex-wrap items-center justify-center gap-6 md:gap-10">
-          {stats.map((s, i) => (
-            <div key={s.label} className="flex items-center gap-2 text-white">
-              {i > 0 && (
-                <span className="hidden md:block text-white/20 select-none" aria-hidden="true">|</span>
-              )}
-              <span className="font-bold">{s.value}</span>
-              <span className="text-white/60 text-sm">{s.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )
