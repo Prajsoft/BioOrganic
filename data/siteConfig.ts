@@ -37,8 +37,5 @@ export const siteConfig = {
     { value: '4.7★', label: 'Google Rating' },
     { value: '9am–7pm', label: 'Available All Days' },
   ],
-  analytics: {
-    gaMeasurementId: 'G-G9J0DHVJSX',
-    metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID || '',
-  },
+  // Analytics IDs live in lib/analyticsIds.ts — the single source of truth.
 }

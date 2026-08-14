@@ -1,8 +1,10 @@
 'use client'
 
-const AW_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
-const AW_LEAD_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL
-const AW_CONTACT_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONTACT_LABEL
+import {
+  GOOGLE_ADS_ID as AW_ID,
+  GOOGLE_ADS_LEAD_LABEL as AW_LEAD_LABEL,
+  GOOGLE_ADS_CONTACT_LABEL as AW_CONTACT_LABEL,
+} from '@/lib/analyticsIds'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -29,7 +31,7 @@ function fbqFire(event: string, params?: Record<string, string>, eventId?: strin
 }
 
 function googleAdsConversion(label: string | undefined) {
-  if (!AW_ID || !label || label.includes('X')) return
+  if (!AW_ID || !label) return
   gtagFire('conversion', { send_to: `${AW_ID}/${label}` })
 }
 

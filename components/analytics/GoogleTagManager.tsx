@@ -1,8 +1,9 @@
 import Script from 'next/script'
-
-const GTM_ID = 'GTM-WZ79D9MQ'
+import { GTM_ID } from '@/lib/analyticsIds'
 
 export function GTMScript() {
+  if (!GTM_ID) return null
+
   return (
     <Script id="gtm-head" strategy="afterInteractive">
       {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -15,6 +16,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 
 export function GTMNoScript() {
+  if (!GTM_ID) return null
+
   return (
     <noscript>
       <iframe

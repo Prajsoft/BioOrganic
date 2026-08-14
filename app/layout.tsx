@@ -13,8 +13,10 @@ import { BRAND_NAME, SITE_URL } from '@/lib/seo'
 /*
  * PRE-GO-LIVE CHECKLIST
  * ─────────────────────
- * 1. Replace NEXT_PUBLIC_GA_MEASUREMENT_ID in .env.local with real G-XXXXXXXX ID
- * 2. Replace NEXT_PUBLIC_META_PIXEL_ID in .env.local with real Pixel ID
+ * 1. GA4, GTM and Meta Pixel IDs resolve in lib/analyticsIds.ts — an ID only
+ *    loads if it matches its vendor format and is not an X-placeholder
+ * 2. Confirm the GTM container has NO GA4 config tag for the same measurement
+ *    ID that <GoogleAnalytics /> loads, or pageviews double-count
  * 3. Verify GA4 Realtime report fires on page load (Chrome DevTools → Network → 'collect')
  * 4. Verify Meta Pixel fires using Meta Pixel Helper browser extension
  * 5. Test whatsapp_click, call_click, form_submit events in GA4 Realtime → Events
